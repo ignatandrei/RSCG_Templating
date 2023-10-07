@@ -18,7 +18,7 @@ Add reference to
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GX</CompilerGeneratedFilesOutputPath>
 </PropertyGroup>
-
+<!-- those are the templates files, see IGenerateDataFromClass -->
   <ItemGroup>
     <AdditionalFiles Include="ClassTypeName.txt" />
     <AdditionalFiles Include="ClassPropByName.txt" />
@@ -41,6 +41,7 @@ namespace {{data.nameSpace}} {
 Now add 
 
 ```csharp
+//can have multiple attributes on partial classes
 [IGenerateDataFromClass("ClassTypeName")]
 public partial class Person
 ```
@@ -60,6 +61,8 @@ Console.WriteLine("called directly first name : " + x.FirstName);
 Console.WriteLine("called via enum of prop first name : " + x.GetPropValue(ePerson_Properties.FirstName));
 Console.WriteLine("called get property :" + x.GetPropValue(ePerson_Properties.Name));
 ```
+
+See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG_Templating
 
 ## More templates
 
