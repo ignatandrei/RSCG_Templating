@@ -32,9 +32,3 @@ jobs:
         cd RSCG_Templating
         dotnet r pack
     
-    - name: psuh nuget
-      if: startsWith(github.event.ref, 'refs/tags/v')
-      run: |
-        dotnet nuget push ${{github.workspace}}/src/RSCG_Templating/PACK/*symb*.*pkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
-
-    
