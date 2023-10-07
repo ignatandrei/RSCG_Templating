@@ -67,7 +67,7 @@
 	<PropertyGroup>
 		<PackAsTool>false</PackAsTool>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Version>2023.930.2116</Version>
+		<Version>2023.1007.724</Version>
 		<Authors>Andrei Ignat</Authors>
 		<Description>Roslyn Templating for all</Description>
 		<Title>RSCG Templating</Title>
