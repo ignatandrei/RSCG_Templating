@@ -7,7 +7,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		<!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,6 +17,7 @@
 		</PackageReference>
 		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="7.0.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
+		<None Remove="bin\Debug\netstandard2.0\\RSCG_Templating.dll" />
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.4.1" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
 
@@ -61,7 +62,7 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" OutputItemType="Analyzer"  GeneratePathProperty="true" PrivateAssets="all" />
+	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" OutputItemType="Analyzer" GeneratePathProperty="true" PrivateAssets="all" />
 	</ItemGroup>
 
 	<PropertyGroup>
