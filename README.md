@@ -70,3 +70,4 @@ See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG
 10. Template for having the class type name: ClassTypeName
 20. Template for having the class properties as enum : ClassPropByName
 30. Template for setting properties after name : ClassPropByName
+40. Template from DebuggerDisplay for properties: ClassDebuggerDisplay

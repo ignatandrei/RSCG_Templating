@@ -4,6 +4,8 @@ namespace TestConsole;
 
 [IGenerateDataFromClass("ClassTypeName")]
 [IGenerateDataFromClass("ClassPropByName")]
+[IGenerateDataFromClass("ClassDebuggerDisplay")]
+
 public partial class Person
 {
     public string Name { get { return FullName(" "); } }

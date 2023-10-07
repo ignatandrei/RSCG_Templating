@@ -10,22 +10,23 @@
   
  
   <ItemGroup>
-    <AdditionalFiles Include="ClassTypeName.txt" />
-    <AdditionalFiles Include="ClassPropByName.txt" />
+    <AdditionalFiles Include="Templating\ClassTypeName.txt" />
+    <AdditionalFiles Include="Templating\ClassPropByName.txt" />
+	<AdditionalFiles Include="Templating\ClassDebuggerDisplay.txt" />
   </ItemGroup>
 
   
  
-  <!--<ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2023.1007.724" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
+  <ItemGroup>
+    <PackageReference Include="RSCG_Templating" Version="2023.1007.724" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1007.724" />
-  </ItemGroup>-->
+  </ItemGroup>
 
  
-  <ItemGroup>
+  <!--<ItemGroup>
 	  <ProjectReference Include="..\RSCG_Templating\RSCG_Templating.csproj" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"  />
 	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
