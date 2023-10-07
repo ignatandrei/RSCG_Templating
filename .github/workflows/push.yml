@@ -19,6 +19,7 @@ jobs:
       run: |
         cd src
         cd RSCG_Templating
+        dotnet tool restore
         dotnet r pack
 
     - name: push nuget
