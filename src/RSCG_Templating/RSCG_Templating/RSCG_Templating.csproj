@@ -31,6 +31,7 @@
 
 	</ItemGroup>
 
+	
 
 	<PropertyGroup>
 		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
@@ -62,13 +63,13 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" OutputItemType="Analyzer" GeneratePathProperty="true" PrivateAssets="all" />
+	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" OutputItemType="Analyzer" GeneratePathProperty="true"  />
 	</ItemGroup>
 
 	<PropertyGroup>
 		<PackAsTool>false</PackAsTool>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Version>2023.1007.724</Version>
+		<Version>2023.1022.1722</Version>
 		<Authors>Andrei Ignat</Authors>
 		<Description>Roslyn Templating for all</Description>
 		<Title>RSCG Templating</Title>
