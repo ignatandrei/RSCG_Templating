@@ -10,8 +10,8 @@ Add reference to
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2023.1022.1722" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1022.1722" />
+    <PackageReference Include="RSCG_Templating" Version="2023.1022.1748" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1022.1748" />
   </ItemGroup>
 <!-- this is just for debug purposes -->
 <PropertyGroup>
