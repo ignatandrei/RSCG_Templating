@@ -17,16 +17,17 @@
 
   
  
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="RSCG_Templating" Version="2023.1022.1722" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1022.1722" />
-  </ItemGroup>
+  </ItemGroup>-->
 
  
-  <!--<ItemGroup>
+  <ItemGroup>
 	  <ProjectReference Include="..\RSCG_Templating\RSCG_Templating.csproj" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"  />
 	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" />
-  </ItemGroup>-->
+  </ItemGroup>
+  
 
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
