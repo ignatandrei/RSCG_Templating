@@ -7,9 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Templating\ClassToInterface.txt" />
+  </ItemGroup>
+
   
  
   <ItemGroup>
+    <AdditionalFiles Include="Templating\ClassToInterface.txt" />
     <AdditionalFiles Include="Templating\ClassTypeName.txt" />
     <AdditionalFiles Include="Templating\ClassPropByName.txt" />
 	<AdditionalFiles Include="Templating\ClassDebuggerDisplay.txt" />
@@ -24,7 +29,7 @@
 
  
   <ItemGroup>
-	  <ProjectReference Include="..\RSCG_Templating\RSCG_Templating.csproj" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"  />
+	  <ProjectReference Include="..\RSCG_Templating\RSCG_Templating.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	  <ProjectReference Include="..\RSCG_TemplatingCommon\RSCG_TemplatingCommon.csproj" />
   </ItemGroup>
   

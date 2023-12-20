@@ -5,9 +5,10 @@ namespace TestConsole;
 [IGenerateDataFromClass("ClassTypeName")]
 [IGenerateDataFromClass("ClassPropByName")]
 [IGenerateDataFromClass("ClassDebuggerDisplay")]
-
+[IGenerateDataFromClass("ClassToInterface")]
 public partial class Person
 {
+    private string Test { get { return this.GetType().Name; } }
     public string Name { get { return FullName(" "); } }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

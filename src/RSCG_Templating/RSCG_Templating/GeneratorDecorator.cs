@@ -1,4 +1,6 @@
-﻿namespace RSCG_Templating;
+﻿using System.Linq.Expressions;
+
+namespace RSCG_Templating;
 
 [Generator]
 public class GeneratorIntercept : IIncrementalGenerator
@@ -92,15 +94,24 @@ public class GeneratorIntercept : IIncrementalGenerator
                 var nameAdd = myAtt.ConstructorArguments.First().Value?.ToString();
 
                 var addText = addtional.Where(it => it.Path.EndsWith($"{nameAdd}.txt")).FirstOrDefault();
-
+                
 
                 if (addText == null) continue;
 
                 var templateText = addText.GetText();
                 if (templateText == null) continue;
-
-                var template = Template.Parse(templateText.ToString());
-
+                Template template;
+                try
+                {
+                    template = Template.Parse(templateText.ToString());
+                }
+                catch(Exception ex)
+                {
+                    var dd = new DiagnosticDescriptor("RSCG_TEMPLATING_ERROR1", "ParseError", "ParseError", "RSCG_TEMPLATING", DiagnosticSeverity.Error, true);
+                    Diagnostic d = Diagnostic.Create(dd, Location.None, ex.Message);
+                    spc.ReportDiagnostic(d);
+                    continue;
+                }
                 //will do with SCRIBAN . Every class has a corresponding scriban additional file.
                 var result = template.Render(new { data , fileName = addText }, a => a.Name);//
                                                                         //var result = "namespace asd{ class MyData{ public int id=9;}}";

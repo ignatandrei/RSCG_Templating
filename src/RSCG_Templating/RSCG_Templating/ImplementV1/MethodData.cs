@@ -6,6 +6,8 @@ internal class MethodData : IMethodData
 {
     public MethodData(IMethodSymbol methodSymbol)
     {
+        if (methodSymbol == null) throw new ArgumentNullException(nameof(methodSymbol));
+        this.methodAccesibility = (Accessibility)((int)methodSymbol.DeclaredAccessibility);
         this.methodSymbol = methodSymbol;
         MethodName = methodSymbol.Name;
         if (methodSymbol.Locations.Length == 1)
@@ -21,7 +23,7 @@ internal class MethodData : IMethodData
             .Select(it => it.Name)
             .ToArray();
     }
-
+    public Accessibility methodAccesibility { get; private set; }
     public string[] parameters { get; private set; }
     public string MethodName { get; }
     private readonly IMethodSymbol methodSymbol;

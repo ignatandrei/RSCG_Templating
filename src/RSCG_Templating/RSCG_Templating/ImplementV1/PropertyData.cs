@@ -9,7 +9,8 @@ internal class PropertyData : IPropertyData
     public string PropertyType { get; set; }
     public bool CanCallSetMethod { get; set; }
     public bool CanCallGetMethod { get; set; }
-
+    public Accessibility GetAccesibility { get; private set; }
+    public Accessibility SetAccesibility { get; private set; }
 
     public PropertyData(IPropertySymbol propertySymbol)
     {
@@ -18,8 +19,16 @@ internal class PropertyData : IPropertyData
         PropertyType = propertySymbol.Type.ToDisplayString();
         var getAcces = propertySymbol.GetMethod;
         CanCallGetMethod = getAcces != null;
+        if (CanCallGetMethod)
+        {
+            GetAccesibility= (Accessibility)((int)getAcces!.DeclaredAccessibility);
+        }
         var setAcces = propertySymbol.SetMethod;
         CanCallSetMethod = setAcces != null;
+        if(CanCallSetMethod)
+        {
+            SetAccesibility = (Accessibility)((int)setAcces!.DeclaredAccessibility);
+        }
 
     }
 
