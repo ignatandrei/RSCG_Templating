@@ -36,128 +36,132 @@ internal class MethodData : IMethodData
             return $"{MethodName}_{Line}";
         }
     }
-    public string MethodCall()
-    {
-        // Assuming you have an IMethodSymbol named 'methodSymbol'
-        var originalMethodDeclaration = SyntaxFactory.MethodDeclaration(
-            SyntaxFactory.ParseTypeName(methodSymbol.OriginalDefinition.ReturnType.ToDisplayString()),
-            methodSymbol.Name
-        );
-
-        // Add parameters with optional/default values
-        var parameters = methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
+    public string MethodCall {
+        get
         {
-            var parameterSyntax = SyntaxFactory.Parameter(
-                default,
-                default,
-                SyntaxFactory.ParseTypeName(parameter.Type.ToDisplayString()),
-                SyntaxFactory.Identifier(parameter.Name),
-                default
+            // Assuming you have an IMethodSymbol named 'methodSymbol'
+            var originalMethodDeclaration = SyntaxFactory.MethodDeclaration(
+                SyntaxFactory.ParseTypeName(methodSymbol.OriginalDefinition.ReturnType.ToDisplayString()),
+                methodSymbol.Name
+            );
+
+            // Add parameters with optional/default values
+            var parameters = methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
+            {
+                var parameterSyntax = SyntaxFactory.Parameter(
+                    default,
+                    default,
+                    SyntaxFactory.ParseTypeName(parameter.Type.ToDisplayString()),
+                    SyntaxFactory.Identifier(parameter.Name),
+                    default
+                );
+
+
+                return parameterSyntax;
+            });
+
+            originalMethodDeclaration = originalMethodDeclaration.WithParameterList(
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters))
+            );
+
+            // Generate the method call expression with the same parameters
+            var methodCallExpression = SyntaxFactory.InvocationExpression(
+                SyntaxFactory.MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    SyntaxFactory.IdentifierName("original"), // Change variableName to your desired variable name
+                    SyntaxFactory.IdentifierName(methodSymbol.Name)
+                ),
+                SyntaxFactory.ArgumentList(
+                    SyntaxFactory.SeparatedList(methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
+                        SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameter.Name))
+                    ))
+                )
             );
 
 
-            return parameterSyntax;
-        });
-
-        originalMethodDeclaration = originalMethodDeclaration.WithParameterList(
-            SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters))
-        );
-
-        // Generate the method call expression with the same parameters
-        var methodCallExpression = SyntaxFactory.InvocationExpression(
-            SyntaxFactory.MemberAccessExpression(
-                SyntaxKind.SimpleMemberAccessExpression,
-                SyntaxFactory.IdentifierName("original"), // Change variableName to your desired variable name
-                SyntaxFactory.IdentifierName(methodSymbol.Name)
-            ),
-            SyntaxFactory.ArgumentList(
-                SyntaxFactory.SeparatedList(methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
-                    SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameter.Name))
-                ))
-            )
-        );
-
-
-        // Convert the method call expression to a string
-        var methodCallString = methodCallExpression.NormalizeWhitespace().ToFullString();
-        if (methodSymbol.ReturnsVoid)
-        {
-            if (IsAsyncMethod())
+            // Convert the method call expression to a string
+            var methodCallString = methodCallExpression.NormalizeWhitespace().ToFullString();
+            if (methodSymbol.ReturnsVoid)
             {
-                methodCallString = "await " + methodCallString;
-            }
-
-        }
-        else
-        {
-            if (IsAsyncMethod())
-            {
-                if (methodSymbol.ReturnType.ToDisplayString().Contains(".Task<"))
-                {
-                    methodCallString = "return await " + methodCallString;
-                }
-                else
+                if (IsAsyncMethod())
                 {
                     methodCallString = "await " + methodCallString;
                 }
+
             }
             else
             {
-                methodCallString = " return " + methodCallString;
+                if (IsAsyncMethod())
+                {
+                    if (methodSymbol.ReturnType.ToDisplayString().Contains(".Task<"))
+                    {
+                        methodCallString = "return await " + methodCallString;
+                    }
+                    else
+                    {
+                        methodCallString = "await " + methodCallString;
+                    }
+                }
+                else
+                {
+                    methodCallString = " return " + methodCallString;
+                }
             }
+
+            methodCallString += ";";
+            return methodCallString;
+
         }
-
-        methodCallString += ";";
-        return methodCallString;
-
-
     }
-    public string MethodDeclaration()
+    public string MethodDeclaration
     {
-        // Assuming you have an IMethodSymbol named 'methodSymbol'
-        var originalMethodDeclaration = SyntaxFactory.MethodDeclaration(
-            SyntaxFactory.ParseTypeName(methodSymbol.OriginalDefinition.ReturnType.ToDisplayString()),
-            methodSymbol.Name
-        );
-
-        // Add optional parameters if any
-        var parameters = methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
+        get
         {
-            var parameterSyntax = SyntaxFactory.Parameter(
-                default,
-                default,
-                SyntaxFactory.ParseTypeName(parameter.Type.ToDisplayString()),
-                SyntaxFactory.Identifier(parameter.Name),
-                default
+            // Assuming you have an IMethodSymbol named 'methodSymbol'
+            var originalMethodDeclaration = SyntaxFactory.MethodDeclaration(
+                SyntaxFactory.ParseTypeName(methodSymbol.OriginalDefinition.ReturnType.ToDisplayString()),
+                methodSymbol.Name
             );
 
-            // Handle optional parameters
-            if (parameter.HasExplicitDefaultValue)
+            // Add optional parameters if any
+            var parameters = methodSymbol.OriginalDefinition.Parameters.Select(parameter =>
             {
-                object defaultValue = parameter.ExplicitDefaultValue!;
-                var literalExpression = GetLiteralExpression(defaultValue);
-                parameterSyntax = parameterSyntax.WithDefault(SyntaxFactory.EqualsValueClause(literalExpression));
+                var parameterSyntax = SyntaxFactory.Parameter(
+                    default,
+                    default,
+                    SyntaxFactory.ParseTypeName(parameter.Type.ToDisplayString()),
+                    SyntaxFactory.Identifier(parameter.Name),
+                    default
+                );
 
+                // Handle optional parameters
+                if (parameter.HasExplicitDefaultValue)
+                {
+                    object defaultValue = parameter.ExplicitDefaultValue!;
+                    var literalExpression = GetLiteralExpression(defaultValue);
+                    parameterSyntax = parameterSyntax.WithDefault(SyntaxFactory.EqualsValueClause(literalExpression));
+
+                }
+
+                return parameterSyntax;
+            });
+
+            originalMethodDeclaration = originalMethodDeclaration.WithParameterList(
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters))
+            );
+            // Check if the method returns Task or Task<T> and add the async modifier
+            if (IsAsyncMethod())
+            {
+                originalMethodDeclaration = originalMethodDeclaration.WithModifiers(originalMethodDeclaration.Modifiers.Add(SyntaxFactory.Token(SyntaxKind.AsyncKeyword)));
             }
 
-            return parameterSyntax;
-        });
+            // Convert the original method declaration to a string
+            var originalMethodDeclarationString = originalMethodDeclaration.NormalizeWhitespace().ToFullString();
 
-        originalMethodDeclaration = originalMethodDeclaration.WithParameterList(
-            SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters))
-        );
-        // Check if the method returns Task or Task<T> and add the async modifier
-        if (IsAsyncMethod())
-        {
-            originalMethodDeclaration = originalMethodDeclaration.WithModifiers(originalMethodDeclaration.Modifiers.Add(SyntaxFactory.Token(SyntaxKind.AsyncKeyword)));
+            // Print or use the originalMethodDeclarationString as needed
+            return originalMethodDeclarationString;
+
         }
-
-        // Convert the original method declaration to a string
-        var originalMethodDeclarationString = originalMethodDeclaration.NormalizeWhitespace().ToFullString();
-
-        // Print or use the originalMethodDeclarationString as needed
-        return originalMethodDeclarationString;
-
     }
     bool IsAsyncMethod()
     {

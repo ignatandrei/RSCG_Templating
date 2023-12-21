@@ -20,5 +20,11 @@ catch (Exception)
 }
 
 IPerson personInterface = p;
+personInterface.FirstName = "Andrei";
+personInterface.LastName = "Ignat";
+Console.WriteLine("called via interface name : " + personInterface.Name);
+Console.WriteLine("called via interface name : " + personInterface.FullName("-"));
+
+Console.WriteLine("called via interface name : " + personInterface.FullName());
 
 //Console.ReadLine();

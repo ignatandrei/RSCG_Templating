@@ -8,7 +8,7 @@
         string NameVariable { get; }
         string[] parameters { get; }
 
-        string MethodCall();
-        string MethodDeclaration();
+        string MethodCall { get; }
+        string MethodDeclaration { get; }
     }
 }

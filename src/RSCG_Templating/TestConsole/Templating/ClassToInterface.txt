@@ -6,19 +6,32 @@ namespace {{data.nameSpace}} {
 			for prop in data.properties 
 			  isPublicGet = (prop.GetAccesibility == 6)
 			  isPublicSet = (prop.SetAccesibility == 6)
-			  
+			  isPublic = (isPublicGet || isPublicSet)
+			  if ! isPublic 
+				continue
+			  end
+			  $getSet = "{" 
+			  if isPublicGet 
+				$getSet+="get;" 
+			  end
+			  if isPublicSet 
+				$getSet+="set;" 
+			  end
+			  $getSet += "}" 
 		}}
-		//{{prop.PropertyType}} {{prop.PropertyName}} {{isPublicGet}} {{isPublicSet}} 
-
-
+		//{{prop.PropertyType}} {{prop.PropertyName}} {{isPublicGet}} {{isPublicSet}} {{isPublic}}
+		{{prop.PropertyType}} {{prop.PropertyName}} {{$getSet}}
 		{{ end }}
-
-		{{ for field in data.fields }}}
-
-		{{ end }}
+				
+		{{ for method in data.methods 
+			isPublic = (method.methodAccesibility == 6)
+			  if ! isPublic 
+				continue
+			  end
+			  call = " "+method.MethodDeclaration | string.replace_first " async " " "
+		}}
 		
-		{{ for method in data.methods }}
-		//{{method.name}} {{method.returnType}} {{method.comment}}
+		{{call }};
 		{{ end }}
 
 	}//end interface
