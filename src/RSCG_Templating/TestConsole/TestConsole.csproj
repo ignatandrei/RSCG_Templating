@@ -23,8 +23,8 @@
   
  
   <!--<ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2023.1022.1748" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1022.1748" />
+    <PackageReference Include="RSCG_Templating" Version="2023.1221.1857" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1221.1857" />
   </ItemGroup>-->
 
  

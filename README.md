@@ -10,8 +10,8 @@ Add reference to
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2023.1022.1748" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1022.1748" />
+    <PackageReference Include="RSCG_Templating" Version="2023.1221.1857" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1221.1857" />
   </ItemGroup>
 <!-- this is just for debug purposes -->
 <PropertyGroup>
@@ -71,3 +71,4 @@ See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG
 20. Template for having the class properties as enum : ClassPropByName
 30. Template for setting properties after name : ClassPropByName
 40. Template from DebuggerDisplay for properties: ClassDebuggerDisplay
+50. Template for generating interface from class : ClassInterface
