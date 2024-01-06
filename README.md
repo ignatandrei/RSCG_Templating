@@ -72,3 +72,7 @@ See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG
 30. Template for setting properties after name : ClassPropByName
 40. Template from DebuggerDisplay for properties: ClassDebuggerDisplay
 50. Template for generating interface from class : ClassInterface
+
+# More Roslyn Source Code Generators
+
+You can find more RSCG with examples at [Roslyn Source Code Generators](https://ignatandrei.github.io/RSCG_Examples/v2/)
