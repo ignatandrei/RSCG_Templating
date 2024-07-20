@@ -12,6 +12,9 @@ public partial class Person
     public string Name { get { return FullName(" "); } }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    public ICollection<Person> Children { get; set; }
+    public DateTime? BirthDate { get; set; }
+    public byte[] Picture { get; set; }
     public string FullName(string separator = " ")
     {
         return FirstName + separator + LastName;

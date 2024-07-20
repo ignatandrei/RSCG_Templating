@@ -19,6 +19,7 @@ namespace {{data.nameSpace}} {
 			  end
 			  $getSet += "}" 
 		}}
+		//{{prop.IsString}} {{prop.IsClass}} {{prop.IsInterface}} {{prop.IsArray}}
 		//{{prop.PropertyType}} {{prop.PropertyName}} {{isPublicGet}} {{isPublicSet}} {{isPublic}}
 		{{prop.PropertyType}} {{prop.PropertyName}} {{$getSet}}
 		{{ end }}

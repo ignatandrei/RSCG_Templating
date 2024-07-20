@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -23,8 +23,8 @@
   
  
   <!--<ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2023.1221.1857" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2023.1221.1857" />
+    <PackageReference Include="RSCG_Templating" Version="2024.720.1603" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2024.720.1603" />
   </ItemGroup>-->
 
  

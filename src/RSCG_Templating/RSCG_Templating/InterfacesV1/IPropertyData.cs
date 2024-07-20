@@ -5,8 +5,15 @@
     {
         bool CanCallSetMethod { get; }
         bool CanCallGetMethod { get; }
-        string PropertyName { get; set; }
+        string PropertyName { get; }
         string PropertyType { get; }
+
+        bool IsString { get; }
+        bool IsClass { get;  }
+        bool IsInterface { get;  }
+        bool IsArray { get; }
+
+
     }
 
 }
