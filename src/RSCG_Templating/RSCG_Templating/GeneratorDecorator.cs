@@ -67,9 +67,9 @@ public class GeneratorIntercept : IIncrementalGenerator
                 var n = method.Name;
                 var yu = method.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
                 var m = new MethodData(method);
-                Console.WriteLine(m.MethodDeclaration);
-                Console.WriteLine(m.MethodCall);
-                Console.WriteLine("---");
+                //Console.WriteLine(m.MethodDeclaration);
+                //Console.WriteLine(m.MethodCall);
+                //Console.WriteLine("---"); 
 
 
             }
