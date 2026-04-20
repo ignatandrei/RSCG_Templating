@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scriban.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -38,7 +39,7 @@ public class GenAddFiles : IIncrementalGenerator
         ImmutableArray<Tuple<ClassDeclarationSyntax, INamedTypeSymbol>?> Right) dataX)
     {
         var addtional = dataX.Left.ToArray();
-        var pathFiles = addtional
+        var pathfiles = addtional
             .Select(it =>
                 new { it.path
                 ,name=Path.GetFileName(it.path)
@@ -103,9 +104,16 @@ public class GenAddFiles : IIncrementalGenerator
                     Diagnostic d = Diagnostic.Create(dd, Location.None, ex.Message);
                     spc.ReportDiagnostic(d);
                     continue;
-                } 
+                }
+
+                ScriptObject scriptObject = new ();
+                scriptObject.Import(new { data, filename = addText[0].path, pathfiles });
+                TemplateContext context = new (scriptObject);
+                context.MemberRenamer = member => member.Name;
+                context.LoopLimit = int.MaxValue-1; 
+                
                 //will do with SCRIBAN . Every class has a corresponding scriban additional file.
-                var result = template!.Render(new { data, fileName = addText[0].path , pathFiles }, a => a.Name);//
+                var result = template!.Render(context);//
                                                                                             //var result = "namespace asd{ class MyData{ public int id=9;}}";
                 var fileName = $"{data.nameSpace}.{data.className}.{nameAdd}";
                 spc.AddSource(fileName, result);
