@@ -10,8 +10,8 @@ Add reference to
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2024.720.1603" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2024.720.1603" />
+    <PackageReference Include="RSCG_Templating" Version="2026.420.1903" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2026.420.1903" />
   </ItemGroup>
 <!-- this is just for debug purposes -->
 <PropertyGroup>
@@ -73,6 +73,24 @@ See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG
 40. Template from DebuggerDisplay for properties: ClassDebuggerDisplay
 50. Template for generating interface from class : ClassInterface
 
+
+# Version 2026.420.1903
+
+Adding templating with data from AdditionalFiles .
+
+This is for generating code from templates that are not related to a class or method , but just from additional files. 
+
+For example you can have a template that generates code from the names of additional files - generate an enum and returning some  data ?
+
+
+```csharp
+[IGenerateDataFromAdditionalFiles("FileInTemplating")]
+partial class FileInTemplating
+{
+}
+```
+
 # More Roslyn Source Code Generators
 
 You can find more RSCG with examples at [Roslyn Source Code Generators](https://ignatandrei.github.io/RSCG_Examples/v2/)
+
