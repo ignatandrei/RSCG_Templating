@@ -108,10 +108,10 @@ public class GenAddFiles : IIncrementalGenerator
 
                 ScriptObject scriptObject = new ();
                 scriptObject.Import(new { data, filename = addText[0].path, pathfiles });
-                TemplateContext context = new (scriptObject);
+                TemplateContext context = new ();
                 context.MemberRenamer = member => member.Name;
                 context.LoopLimit = int.MaxValue-1; 
-                
+                context.PushGlobal(scriptObject);
                 //will do with SCRIBAN . Every class has a corresponding scriban additional file.
                 var result = template!.Render(context);//
                                                                                             //var result = "namespace asd{ class MyData{ public int id=9;}}";
