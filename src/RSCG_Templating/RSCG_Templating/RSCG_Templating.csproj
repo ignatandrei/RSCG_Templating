@@ -16,7 +16,8 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="10.0.6" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" >
+		</PackageReference>
 		<None Remove="bin\Debug\netstandard2.0\\RSCG_Templating.dll" />
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<!--<PackageReference Include="ThisAssembly.AssemblyInfo" Version="2.1.2" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">

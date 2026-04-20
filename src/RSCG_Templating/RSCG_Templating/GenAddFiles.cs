@@ -63,8 +63,8 @@ public class GenAddFiles : IIncrementalGenerator
 
             var cds = tpl.Item1;
             var data = new ClassData();
-            var baseNamespace = cds.Parent as BaseNamespaceDeclarationSyntax;
-            var name = baseNamespace?.Name.ToFullString();
+            var baseNamespace = symbolClass.ContainingNamespace.IsGlobalNamespace? string.Empty: symbolClass.ContainingNamespace.ToDisplayString();
+            var name = baseNamespace;
             data.nameSpace = name;
             data.className = cds.Identifier.ValueText;
 
@@ -79,20 +79,33 @@ public class GenAddFiles : IIncrementalGenerator
 
                 var templateText = addText[0].item.GetText();
                 if (templateText == null) continue;
-                Template template;
+                Template? template=null;
                 try
                 {
                     template = Template.Parse(templateText.ToString());
+                    if (template.HasErrors)
+                    {
+                        var errors = template.Messages.Select(it => it.Message+"=="+ it.ToString()).ToArray();
+                        var dd = new DiagnosticDescriptor(
+                        "RSCG_TEMPLATING_ERROR1",
+                        "ParseError",
+                        "ParseError: {0}",
+                        "RSCG_TEMPLATING",
+                        DiagnosticSeverity.Error,
+                        true);
+                        spc.ReportDiagnostic(Diagnostic.Create(dd, Location.None, errors));
+                        continue;
+                    }
                 }
                 catch (Exception ex)
-                {
-                    var dd = new DiagnosticDescriptor("RSCG_TEMPLATING_ERROR1", "ParseError", "ParseError", "RSCG_TEMPLATING", DiagnosticSeverity.Error, true);
+                {                    
+                    var dd = new DiagnosticDescriptor("RSCG_TEMPLATING_ERROR1", "ParseError", "ParseError: {0}", "RSCG_TEMPLATING", DiagnosticSeverity.Error, true);
                     Diagnostic d = Diagnostic.Create(dd, Location.None, ex.Message);
                     spc.ReportDiagnostic(d);
                     continue;
                 } 
                 //will do with SCRIBAN . Every class has a corresponding scriban additional file.
-                var result = template.Render(new { data, fileName = addText[0].path , pathFiles }, a => a.Name);//
+                var result = template!.Render(new { data, fileName = addText[0].path , pathFiles }, a => a.Name);//
                                                                                             //var result = "namespace asd{ class MyData{ public int id=9;}}";
                 var fileName = $"{data.nameSpace}.{data.className}.{nameAdd}";
                 spc.AddSource(fileName, result);
