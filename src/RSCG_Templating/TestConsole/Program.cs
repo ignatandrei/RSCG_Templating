@@ -27,4 +27,5 @@ Console.WriteLine("called via interface name : " + personInterface.FullName("-")
 
 Console.WriteLine("called via interface name : " + personInterface.FullName());
 
+Console.WriteLine(FileInTemplating.GetName("ClassToInterface"));
 //Console.ReadLine();

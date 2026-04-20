@@ -11,22 +11,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="7.0.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.CodeDom" PrivateAssets="all" GeneratePathProperty="true" Version="10.0.6" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" >
+		</PackageReference>
 		<None Remove="bin\Debug\netstandard2.0\\RSCG_Templating.dll" />
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-		<PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.4.1" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
+		<!--<PackageReference Include="ThisAssembly.AssemblyInfo" Version="2.1.2" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
 
-		</PackageReference>
+		</PackageReference>-->
 
 
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Scriban" Version="5.9.0" GeneratePathProperty="true" PrivateAssets="all" />
+		<PackageReference Include="Scriban" Version="7.1.0" GeneratePathProperty="true" PrivateAssets="all" />
 		<None Include="$(PkgScriban)\lib\netstandard2.0\Scriban.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
 	</ItemGroup>
@@ -51,7 +52,7 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.202" PrivateAssets="All" />
 
 		<None Include="../../../README.md" Pack="true" PackagePath="\" />
 		<None Include="../../../readme.txt">

@@ -2,23 +2,23 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Templating\ClassToInterface.txt" />
-  </ItemGroup>
-
   
- 
-  <ItemGroup>
+
+
+
+	<ItemGroup>
     <AdditionalFiles Include="Templating\ClassToInterface.txt" />
     <AdditionalFiles Include="Templating\ClassTypeName.txt" />
     <AdditionalFiles Include="Templating\ClassPropByName.txt" />
 	<AdditionalFiles Include="Templating\ClassDebuggerDisplay.txt" />
-  </ItemGroup>
+	<AdditionalFiles Include="Templating\FileInTemplating.txt" />
+		
+	</ItemGroup>
 
   
  

@@ -3,10 +3,11 @@
   "isRoot": true,
   "tools": {
     "run-script": {
-      "version": "0.5.0",
+      "version": "0.6.0",
       "commands": [
         "r"
-      ]
+      ],
+      "rollForward": false
     }
   }
 }

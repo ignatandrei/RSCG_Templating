@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Profile 1": {
+    "Profile 3": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\TestConsole\\TestConsole.csproj"
     }
