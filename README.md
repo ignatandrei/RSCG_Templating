@@ -10,8 +10,8 @@ Add reference to
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="RSCG_Templating" Version="2026.420.1903" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
-    <PackageReference Include="RSCG_TemplatingCommon" Version="2026.420.1903" />
+    <PackageReference Include="RSCG_Templating" Version="2026.420.2003" OutputItemType="Analyzer"  ReferenceOutputAssembly="false"   />
+    <PackageReference Include="RSCG_TemplatingCommon" Version="2026.420.2003" />
   </ItemGroup>
 <!-- this is just for debug purposes -->
 <PropertyGroup>
@@ -74,7 +74,7 @@ See example at https://github.com/ignatandrei/RSCG_Templating/tree/main/src/RSCG
 50. Template for generating interface from class : ClassInterface
 
 
-# Version 2026.420.1903
+# Version 2026.420.2003
 
 Adding templating with data from AdditionalFiles .
 
