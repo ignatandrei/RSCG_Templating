@@ -19,9 +19,9 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
 		<None Remove="bin\Debug\netstandard2.0\\RSCG_Templating.dll" />
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-		<PackageReference Include="ThisAssembly.AssemblyInfo" Version="2.1.2" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
+		<!--<PackageReference Include="ThisAssembly.AssemblyInfo" Version="2.1.2" PrivateAssets="all" ReferenceOutputAssembly="false" OutputItemType="Analyzer">
 
-		</PackageReference>
+		</PackageReference>-->
 
 
 	</ItemGroup>

@@ -4,7 +4,7 @@ namespace RSCG_Templating.ImplementV1;
 
 internal class ClassData : IClassData
 {
-    public string Version { get; set; } = ThisAssembly.Info.Version;
+    public string Version { get; set; } = "2024.720.1603";
     public string? nameSpace { get; set; }
     public string? className { get; set; }
     public IMethodData[] methods { get; set; } = new MethodData[0];
