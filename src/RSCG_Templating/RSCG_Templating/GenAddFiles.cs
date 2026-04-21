@@ -39,11 +39,13 @@ public class GenAddFiles : IIncrementalGenerator
         ImmutableArray<Tuple<ClassDeclarationSyntax, INamedTypeSymbol>?> Right) dataX)
     {
         var addtional = dataX.Left.ToArray();
-        var pathfiles = addtional
+        var pathFiles = addtional
             .Select(it =>
                 new { it.path
                 ,name=Path.GetFileName(it.path)
+                ,namePascal = StringUtils.ConvertToPascalCase(Path.GetFileNameWithoutExtension(it.path))
                 ,nameNoExt = Path.GetFileNameWithoutExtension(it.path)
+                ,pathArr= it.path.Split(new[] { "\\", "/" }, StringSplitOptions.RemoveEmptyEntries).ToArray()                
                 }
             ) 
             .ToArray();
@@ -107,7 +109,11 @@ public class GenAddFiles : IIncrementalGenerator
                 }
 
                 ScriptObject scriptObject = new ();
-                scriptObject.Import(new { data, filename = addText[0].path, pathfiles });
+                scriptObject.Import(
+                    new { data, fileName = addText[0].path, pathFiles}
+                ,null,member => member.Name
+
+                );
                 TemplateContext context = new ();
                 context.MemberRenamer = member => member.Name;
                 context.LoopLimit = int.MaxValue-1; 
